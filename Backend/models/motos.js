@@ -20,6 +20,10 @@ const MotoSchema = Schema({
     disponible: {
         type: String,
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario',
+    }
     
 });
 

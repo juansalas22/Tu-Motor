@@ -1,61 +1,52 @@
 //import Swal from 'sweetalert2';
 
-import { types } from '../types/types';
-import { fetchSinToken } from '../helpers/fetch';
+import { types } from "../types/types";
+import { fetchSinToken } from "../helpers/fetch";
 // import { prepareEvents } from '../helpers/prepareEvents';
 
+export const eventStartAddNew = (event) => {
+  return async (dispatch, getState) => {
+    const { uid, name } = getState().auth;
 
-export const eventStartAddNew = ( event ) => {
-    return async( dispatch, getState ) => {
+    try {
+      const resp = await fetchSinToken("motocicletas", event, "POST");
+      const body = await resp.json();
 
-        const { uid, name } = getState().auth;
+      // console.log(body)
 
-        try {
-            const resp = await fetchSinToken('motocicletas', event, 'POST');
-            const body = await resp.json();
-
-            // console.log(body)
-
-            if ( body.ok ) {
-                event.id = body.evento.id;
-                event.user = {
-                    _id: uid,
-                    name: name
-                }
-                //console.log( event );
-                dispatch( eventAddNew( event ) );
-            }
-
-
-        } catch (error) {
-            console.log(error);
-        }
-
-        
-
+      if (body.ok) {
+        event.id = body.evento.id;
+        event.user = {
+          _id: uid,
+          name: name,
+        };
+        //console.log( event );
+        dispatch(eventAddNew(event));
+      }
+    } catch (error) {
+      console.log(error);
     }
-    // return async(dispatch)=>{
-    //     const resp = await fetchConToken('events', event, 'POST');
-    //     const body = await resp.json();
-    //     console.log(body)
-    // }
-}
-
-
+  };
+  // return async(dispatch)=>{
+  //     const resp = await fetchConToken('events', event, 'POST');
+  //     const body = await resp.json();
+  //     console.log(body)
+  // }
+};
 
 const eventAddNew = (event) => ({
-    type: types.eventAddNew,
-    payload: event
+  type: types.eventAddNew,
+  payload: event,
 });
 
 export const eventSetActive = (event) => ({
-    type: types.eventSetActive,
-    payload: event
+  type: types.eventSetActive,
+  payload: event,
 });
 
-export const eventClearActiveEvent = () => ({ type: types.eventClearActiveEvent });
-
-
+export const eventClearActiveEvent = () => ({
+  type: types.eventClearActiveEvent,
+});
 
 // export const eventStartUpdate = ( event ) => {
 //     return async(dispatch) => {
@@ -70,7 +61,6 @@ export const eventClearActiveEvent = () => ({ type: types.eventClearActiveEvent 
 //                 Swal.fire('Error', body.msg, 'error');
 //             }
 
-
 //         } catch (error) {
 //             console.log(error)
 //         }
@@ -82,7 +72,6 @@ export const eventClearActiveEvent = () => ({ type: types.eventClearActiveEvent 
 //     type: types.eventUpdated,
 //     payload: event
 // });
-
 
 // export const eventStartDelete = () => {
 //     return async ( dispatch, getState ) => {
@@ -98,7 +87,6 @@ export const eventClearActiveEvent = () => ({ type: types.eventClearActiveEvent 
 //                 Swal.fire('Error', body.msg, 'error');
 //             }
 
-
 //         } catch (error) {
 //             console.log(error)
 //         }
@@ -106,35 +94,29 @@ export const eventClearActiveEvent = () => ({ type: types.eventClearActiveEvent 
 //     }
 // }
 
-
 // const eventDeleted = () => ({ type: types.eventDeleted });
 
-
 export const eventStartLoading = () => {
-    return async(dispatch) => {
-
-        try {
-            
-            const resp = await fetchSinToken('events');
-            const body = await resp.json();
-            console.log(body)
-            const events =  body.eventos;
-            dispatch( eventLoaded( events ) );
-            console.log(events)
-
-        } catch (error) {
-            console.log(error)
-        }
-
+  return async (dispatch) => {
+    try {
+      const resp = await fetchSinToken("motocicletas");
+      const body = await resp.json();
+      console.log("soy el body",body);
+      const events = body.evento;
+      dispatch(eventLoaded(events));
+      console.log(events);
+    } catch (error) {
+      console.log(error);
     }
-    // return (dispatch) => {
-    //     console.log('??????');
-    // }
-}
+  };
+  // return (dispatch) => {
+  //     console.log('??????');
+  // }
+};
 
 const eventLoaded = (events) => ({
-    type: types.eventLoaded,
-    payload: events
-})
+  type: types.eventLoaded,
+  payload: events,
+});
 
-export const eventLogout =() => ({ type: types.eventLogout });
+export const eventLogout = () => ({ type: types.eventLogout });

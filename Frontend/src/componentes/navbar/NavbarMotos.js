@@ -33,7 +33,7 @@ export const NavbarMotos = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <Nav.Link href="/registro">Registra Motor</Nav.Link>
-              <Nav.Link href="#action2">Actualiza Motor</Nav.Link>
+              <Nav.Link href="/gestion">Actualiza Motor</Nav.Link>
               <br/>
               <Button variant="outline-info" className="btn" onClick={hanleLogout}>
                 {" "}

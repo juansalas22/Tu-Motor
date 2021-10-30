@@ -10,10 +10,12 @@ import { Registro } from "./componentes/producto/registro/Registro";
 
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
+import { Gestion } from "./componentes/producto/gestion/Gestion";
 
 import { useDispatch } from "react-redux";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { login } from "./actions/auth";
+
 
 export const Routers = () => {
   const dispatch = useDispatch();
@@ -43,12 +45,6 @@ export const Routers = () => {
     <Router>
       <div>
         <Switch>
-          {/* <Route exact path="/" component={Login} />
-            <Route
-              exact
-              path="/registro"
-              component={Registro}
-            /> */}
           <PublicRoute
             exact
             path="/"
@@ -62,6 +58,14 @@ export const Routers = () => {
             component={Registro}
             isAuthenticated={isLoggedIn}
           />
+
+          <PrivateRoute
+            exact
+            path="/gestion"
+            component={Gestion}
+            isAuthenticated={isLoggedIn}
+          />
+
           <Redirect to="/" />
         </Switch>
       </div>
