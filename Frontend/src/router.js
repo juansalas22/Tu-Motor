@@ -11,6 +11,8 @@ import { Registro } from "./componentes/producto/registro/Registro";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import { Gestion } from "./componentes/producto/gestion/Gestion";
+import { Edicion} from "./componentes/producto/gestion/Edicion";
+import { Usuarios } from "./componentes/administrador/Usuarios";
 
 import { useDispatch } from "react-redux";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -51,7 +53,7 @@ export const Routers = () => {
             component={Login}
             isAuthenticated={isLoggedIn}
           />
-
+          
           <PrivateRoute
             exact
             path="/registro"
@@ -63,6 +65,20 @@ export const Routers = () => {
             exact
             path="/gestion"
             component={Gestion}
+            isAuthenticated={isLoggedIn}
+          />
+
+          <PrivateRoute
+            exact
+            path="/gestion/:motoid"
+            component={Edicion}
+            isAuthenticated={isLoggedIn}
+          />
+
+          <PrivateRoute
+            exact
+            path="/usuarios"
+            component={Usuarios}
             isAuthenticated={isLoggedIn}
           />
 

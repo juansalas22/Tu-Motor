@@ -54,6 +54,12 @@ export const productReducer = ( state = initialState, action ) => {
                 ...state,
                 events: [ ...action.payload ]
             }
+        
+        case types.loginLoaded:
+            return {
+                ...state,
+                events: [ ...action.payload ]
+        }    
 
         case types.eventLogout:
             return {

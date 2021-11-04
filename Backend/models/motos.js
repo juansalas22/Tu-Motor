@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const MotoSchema = Schema({
 
     codigo: {
-        type: Number,
+        type: String,
         required: true
     },
     nombre: {

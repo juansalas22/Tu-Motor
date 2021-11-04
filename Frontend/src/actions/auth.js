@@ -5,6 +5,8 @@ import { types } from '../types/types';
 import { startLoading, finishLoading } from './ui';
 import Swal from 'sweetalert2';
 
+import { fetchSinToken } from "../helpers/fetch";
+
 export const startLoginEmailPassword = (email, password) => {
     return (dispatch) => {
 
@@ -62,3 +64,25 @@ export const logout = () => ({
     type: types.logout
 })
 
+export const eventStartLoading = () => {
+    return async (dispatch) => {
+      try {
+        const resp = await fetchSinToken("administrador");
+        const body = await resp.json();
+        //console.log("soy el body",body);
+        const users = body.usuario;
+        dispatch(loginLoaded(users));
+        //console.log(events);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    // return (dispatch) => {
+    //     console.log('??????');
+    // }
+  };
+  
+  const loginLoaded = (users) => ({
+    type: types.loginLoaded,
+    payload: users,
+  });

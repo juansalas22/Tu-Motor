@@ -3,9 +3,6 @@ require('dotenv').config();
 const { dbConnection } = require('./db/config');
 const cors = require('cors');
 
-//importacion Freddy
-// const usersRoutes = require("./routes/RoutersUsuarios");
-
 //importacion Sebas
 // const routeRegistroVentas = require("./routes/RoutesRegVentas");
 
@@ -25,13 +22,10 @@ app.use( express.static('public') );
 app.use( express.json() );
 
 // Rutas
-// app.use('/api/auth', require('./routes/auth') );
 
 app.use('/api/motocicletas', require('./routes/RouterMotocicletas') );
 
-//Ruta Freddy
-
-// app.use("/usuarios", usersRoutes);
+app.use('/api/administrador', require('./routes/RouterUsuarios') );
 
 //Ruta Sebas
 

@@ -12,7 +12,7 @@ export const Registro = () => {
   const dispatch = useDispatch();
 
   const [formValues, setFormValues] = useState({
-    codigo: 0,
+    codigo: "",
     nombre: "",
     descripcion: "",
     valor: 0,
@@ -38,7 +38,7 @@ export const Registro = () => {
       icon: "success",
       confirmButtonText: "Super",
     }).then(function () {
-      window.location = "/registro";
+      window.location = "/gestion";
     });
   };
   return (
@@ -54,9 +54,9 @@ export const Registro = () => {
               <Form.Group className="mb-3" controlId="formGroupCode">
                 <Form.Label>Codigo</Form.Label>
                 <Form.Control
-                  type="number"
+                  type="text"
                   name="codigo"
-                  placeholder="Enter code"
+                  placeholder="Ingrese codigo"
                   value={codigo}
                   onChange={handleInputChange}
                 />
@@ -66,7 +66,7 @@ export const Registro = () => {
                 <Form.Control
                   type="text"
                   name="nombre"
-                  placeholder="Enter name"
+                  placeholder="Ingrese nombre"
                   value={nombre}
                   onChange={handleInputChange}
                 />
@@ -76,7 +76,7 @@ export const Registro = () => {
                 <Form.Control
                   type="text"
                   name="descripcion"
-                  placeholder="Description"
+                  placeholder="Ingrese descripcion"
                   value={descripcion}
                   onChange={handleInputChange}
                 />
@@ -86,7 +86,7 @@ export const Registro = () => {
                 <Form.Control
                   type="number"
                   name="valor"
-                  placeholder="Enter value"
+                  placeholder="Ingrese valor"
                   value={valor}
                   onChange={handleInputChange}
                 />

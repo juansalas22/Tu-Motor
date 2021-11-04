@@ -10,10 +10,12 @@ export const types = {
     eventUpdated: '[event] Event updated',
     eventDeleted: '[event] Event deleted',
     eventLoaded: '[event] Events loaded',
-
+    
+    loginLoaded: '[event] Login loaded',
+    
     login: '[Auth] Login',
     logout: '[Auth] Logout',
-
+    
     uiSetError: '[UI] Set Error',
     uiRemoveError: '[UI] Remove Error',
 

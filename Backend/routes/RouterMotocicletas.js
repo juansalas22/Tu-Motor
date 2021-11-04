@@ -28,15 +28,19 @@ router.post(
     crearEvento 
 );
 
-// Actualizar Evento
-// router.put(
-//     '/:id', 
-//     [
-//         check('title','El titulo es obligatorio').not().isEmpty(),
-//         validarCampos
-//     ],
-//     actualizarEvento 
-// );
+//Actualizar Evento
+router.put(
+    '/:id', 
+    [
+        check('codigo','El codigo es obligatorio').not().isEmpty(),
+        check('nombre','El nombre es obligatorio').not().isEmpty(),
+        check('valor','El valor es obligatorio').not().isEmpty(),
+
+
+        validarCampos
+    ],
+    actualizarEvento 
+);
 
 // Borrar evento
 // router.delete('/:id', eliminarEvento );
