@@ -54,12 +54,29 @@ export const productReducer = ( state = initialState, action ) => {
                 ...state,
                 events: [ ...action.payload ]
             }
-        
+        //Caso para obtener usuarios
         case types.loginLoaded:
             return {
                 ...state,
                 events: [ ...action.payload ]
-        }    
+        }
+        //Caso para actualizar usuarios
+        case types.loginUpdated:
+            return {
+                ...state,
+                events: state.events.map(
+                    e => ( e.id === action.payload.id ) ? action.payload : e
+                )
+            }
+        //Caso para registrar venta
+        case types.ventaAddNew:
+            return {
+                ...state,
+                events: [
+                    ...state.events,
+                    action.payload
+                ]
+            }
 
         case types.eventLogout:
             return {

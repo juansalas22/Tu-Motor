@@ -13,6 +13,8 @@ import { PublicRoute } from "./PublicRoute";
 import { Gestion } from "./componentes/producto/gestion/Gestion";
 import { Edicion} from "./componentes/producto/gestion/Edicion";
 import { Usuarios } from "./componentes/administrador/Usuarios";
+import {  Edit } from "./componentes/administrador/Edit";
+import { Venta } from "./componentes/ventas/registro/Venta";
 
 import { useDispatch } from "react-redux";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -79,6 +81,20 @@ export const Routers = () => {
             exact
             path="/usuarios"
             component={Usuarios}
+            isAuthenticated={isLoggedIn}
+          />
+
+          <PrivateRoute
+            exact
+            path="/usuarios/:usuarioid"
+            component={Edit}
+            isAuthenticated={isLoggedIn}
+          />
+
+          <PrivateRoute
+            exact
+            path="/venta"
+            component={Venta}
             isAuthenticated={isLoggedIn}
           />
 

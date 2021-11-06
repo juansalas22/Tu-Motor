@@ -117,10 +117,48 @@ const getUsuarios = async ( req, res = response ) => {
     });
 }
 
+const actualizarUsuario = async( req, res = response ) => {
+    
+    const eventoId = req.params.id;
+
+    try {
+
+        const evento = await Usuario.findById( eventoId );
+
+        if ( !evento ) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'Evento no existe por ese id'
+            });
+        }
+
+        const nuevoEvento = {
+            ...req.body
+            
+        }
+
+        const eventoActualizado = await Usuario.findByIdAndUpdate( eventoId, nuevoEvento, { new: true } );
+
+        res.json({
+            ok: true,
+            evento: eventoActualizado
+        });
+
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
+
+}
 
 module.exports = {
     crearUsuario,
     loginUsuario,
     revalidarToken,
-    getUsuarios
+    getUsuarios,
+    actualizarUsuario
 }

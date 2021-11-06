@@ -27,6 +27,8 @@ app.use('/api/motocicletas', require('./routes/RouterMotocicletas') );
 
 app.use('/api/administrador', require('./routes/RouterUsuarios') );
 
+app.use('/api/ventas', require('./routes/RouterVentas') );
+
 //Ruta Sebas
 
 // app.use("/api", routeRegistroVentas);

@@ -64,6 +64,8 @@ export const logout = () => ({
     type: types.logout
 })
 
+
+//Traer los usuarios
 export const eventStartLoading = () => {
     return async (dispatch) => {
       try {
@@ -86,3 +88,30 @@ export const eventStartLoading = () => {
     type: types.loginLoaded,
     payload: users,
   });
+
+//Actualizar los usuarios
+export const eventStartUpdate = ( event ) => {
+    return async(dispatch) => {
+
+        try {
+            //console.log(event);
+            const resp = await fetchSinToken(`administrador/${ event.id }`, event, 'PUT' );
+            const body = await resp.json();
+
+            if ( body.ok ) {
+                dispatch( eventUpdated( event ) );
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+}
+
+const eventUpdated = ( event ) => ({
+    type: types.loginUpdated,
+    payload: event
+});

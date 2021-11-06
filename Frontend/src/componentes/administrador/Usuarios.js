@@ -47,7 +47,7 @@ export const Usuarios = () => {
                         <td>{usuario.estado} </td> 
                         <td>
                         
-                            <Link to={`/gestion/${usuario._id}`}>
+                            <Link to={`/usuarios/${usuario._id}`}>
                             <Button
                                 variant="primary"
                                 id={usuario._id}
